@@ -28,7 +28,8 @@ module.exports = function(options){
 						)];
 						path.parentPath.remove();
 					} else if(t.isAssignmentExpression(path.parent) || 
-						t.isCallExpression(path.parent)) {
+						t.isCallExpression(path.parent) ||
+						t.isObjectProperty(path.parent)) {
 						var localVar = path.scope.generateUidIdentifier(modulePath);
 						path.replaceWith(t.identifier(localVar.name));
 						identifiers = [t.importDefaultSpecifier(

@@ -48,6 +48,15 @@ var foo = _foo();`
 	{
 		before: `var foo = require(process.cwd() + "/bar");`,
 		after: `var foo = require(process.cwd() + "/bar");`
+	},
+	{
+		before: `module.exports = { foo: require("bar") }`,
+		after: `import _bar from "bar";
+
+let _moduleExports;
+
+export default _moduleExports;
+_moduleExports = { foo: _bar };`
 	}
 ];
 
