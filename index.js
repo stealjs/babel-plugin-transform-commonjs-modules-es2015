@@ -59,6 +59,11 @@ module.exports = function(options){
 					path.replaceWith(t.identifier(moduleExportIdentifier.name));
 				}
 			},
+			Directive: function(path){
+				if(path.get("value").node.value === "use strict") {
+					path.remove();
+				}
+			},
 			Program: {
 				enter: function(){
 					imports = [];

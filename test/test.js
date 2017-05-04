@@ -8,6 +8,10 @@ const testCases = [
 		after: `import "foo";`
 	},
 	{
+		before: `"use strict";\nrequire("foo");`,
+		after: `import "foo";`
+	},
+	{
 		before: `require("foo");
 		module.exports = {};`,
 		after: `import "foo";
