@@ -17,7 +17,8 @@ module.exports = function(options){
 			CallExpression: function(path){
 				var node = path.node;
 
-				if(path.get("callee").node.name === "require") {
+				if(path.get("callee").node.name === "require" &&
+					t.isStringLiteral(path.get('arguments.0'))) {
 					var modulePath = path.get('arguments.0').node.value;
 					var identifiers = [];
 
