@@ -27,7 +27,7 @@ let _moduleExports;
 export default _moduleExports;
 
 _moduleExports = {};`
-	},*/
+	},
 	{
 		before: `var foo = require("../foo");
 			module.exports = require("../bar");`,
@@ -39,6 +39,11 @@ let _moduleExports;
 export default _moduleExports;
 
 _moduleExports = _bar;`
+	},*/
+	{
+		before: `var foo = require("../foo")();`,
+		after: `import _foo from "../foo";
+var foo = _foo();`
 	}
 ];
 

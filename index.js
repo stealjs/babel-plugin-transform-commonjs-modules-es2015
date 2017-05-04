@@ -21,14 +21,13 @@ module.exports = function(options){
 					var modulePath = path.get('arguments.0').node.value;
 					var identifiers = [];
 
-					debugger;
-
 					if(t.isVariableDeclarator(path.parent)) {
 						identifiers = [t.importDefaultSpecifier(
 							t.identifier(path.parent.id.name)
 						)];
 						path.parentPath.remove();
-					} else if(t.isAssignmentExpression(path.parent)) {
+					} else if(t.isAssignmentExpression(path.parent) || 
+						t.isCallExpression(path.parent)) {
 						var localVar = path.scope.generateUidIdentifier(modulePath);
 						path.replaceWith(t.identifier(localVar.name));
 						identifiers = [t.importDefaultSpecifier(
