@@ -3,7 +3,7 @@ const babel = require('babel-core');
 const cjsToES = require("../index");
 
 const testCases = [
-	{
+	/*{
 		before: `require("foo");`,
 		after: `import "foo";`
 	},
@@ -27,6 +27,18 @@ let _moduleExports;
 export default _moduleExports;
 
 _moduleExports = {};`
+	},*/
+	{
+		before: `var foo = require("../foo");
+			module.exports = require("../bar");`,
+		after: `import foo from "../foo";
+import _bar from "../bar";
+
+let _moduleExports;
+
+export default _moduleExports;
+
+_moduleExports = _bar;`
 	}
 ];
 
