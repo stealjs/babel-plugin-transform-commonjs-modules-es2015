@@ -18,9 +18,9 @@ const testCases = [
 
 let _moduleExports;
 
-export default _moduleExports;
-
-_moduleExports = {};`},
+_moduleExports = {};
+export default _moduleExports;`
+	},
 	{
 		before: `var foo = require("bar");
 			module.exports = {};`,
@@ -28,9 +28,8 @@ _moduleExports = {};`},
 
 let _moduleExports;
 
-export default _moduleExports;
-
-_moduleExports = {};`
+_moduleExports = {};
+export default _moduleExports;`
 	},
 	{
 		before: `var foo = require("../foo");
@@ -40,9 +39,8 @@ import _bar from "../bar";
 
 let _moduleExports;
 
-export default _moduleExports;
-
-_moduleExports = _bar;`
+_moduleExports = _bar;
+export default _moduleExports;`
 	},
 	{
 		before: `var foo = require("../foo")();`,
@@ -59,8 +57,8 @@ var foo = _foo();`
 
 let _moduleExports;
 
-export default _moduleExports;
-_moduleExports = { foo: _bar };`
+_moduleExports = { foo: _bar };
+export default _moduleExports;`
 	}
 ];
 

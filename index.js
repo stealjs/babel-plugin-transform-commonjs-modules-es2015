@@ -1,9 +1,7 @@
 var template = require("babel-template");
 
-var buildModuleExports = template(`
-let NAME;
-export default ONAME;
-`, {
+var buildLetModuleExports = template(`let NAME;`);
+var buildExportModule = template(`export default NAME;`, {
 	sourceType: "module"
 });
 
@@ -75,13 +73,19 @@ module.exports = function(options){
 					var body = imports.slice();
 
 					if(moduleExportIdentifier) {
-						body.push.apply(body, buildModuleExports({
-							NAME: moduleExportIdentifier,
-							ONAME: moduleExportIdentifier
+						body.push(buildLetModuleExports({
+							NAME: moduleExportIdentifier
 						}));
 					}
 
 					body.push.apply(body, node.body);
+
+					if(moduleExportIdentifier) {
+						body.push(buildExportModule({
+							NAME: moduleExportIdentifier
+						}));
+					}
+
 					node.body = body;
 				}
 			}
